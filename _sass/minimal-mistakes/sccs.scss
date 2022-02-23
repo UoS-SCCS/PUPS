@@ -1,0 +1,87 @@
+.sectionlink:link {
+    text-decoration: none !important;
+}
+.sectionlink:visited {
+    text-decoration: none !important;
+}
+.sectionlink:hover {
+    text-decoration: none !important;
+}
+.sectionlink:active {
+    text-decoration: none !important;
+}
+.sectionlink > div{
+    
+}
+.sectionlink:hover img{
+    box-shadow: 10px 10px 8px #888888 !important;
+}
+.sectionlink:hover i{
+    text-shadow: 10px 10px 8px #bbb !important;
+}
+.sectionlink:hover h2{
+    text-shadow: 10px 10px 8px #bbb !important;
+}
+.sectionlink:hover p{
+    text-shadow: 10px 10px 8px #bbb !important;
+}
+.feature__wrapper_wide {
+    width:100%;
+}
+
+.archive__item_old {
+    float: left;
+    width: 100% !important;
+  }
+  .lesson-container {
+      width:100%;
+  }
+  .lesson-wrapper {
+      width:100%;
+      display: flex;
+      margin-bottom:1em;
+      color: $link-color;
+      border-color:$border-color;
+      border-style:solid;
+      border-width:0.1em;
+      padding:1em;
+
+  }
+  .lesson-icon {
+      color: $link-color;
+  }
+  .lesson-text {
+      color: $link-color;
+      flex-grow: 1;
+      padding-left:0.5em;
+  }
+
+  .lesson-text h2 {
+    border-bottom: none;
+    padding-bottom: 0em;
+    padding-top:0.5em;
+    margin-top:0em;
+  }
+  .clear-fix {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .lessonlink:link {
+    text-decoration: none !important;
+}
+.lessonlink:visited {
+    text-decoration: none !important;
+}
+.lessonlink:hover {
+    text-decoration: none !important;
+}
+.lessonlink:active {
+    text-decoration: none !important;
+}
+
+
+.lessonlink:hover > div {
+    box-shadow: 5px 5px 4px 4px #888888 !important;
+    
+}

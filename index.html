@@ -1,0 +1,62 @@
+---
+# You don't need to edit this file, it's empty on purpose.
+# Edit theme's home layout instead if you wanna make some changes
+# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+layout: splash
+author_profile: false
+header:
+  overlay_color: "#fff"
+  
+  overlay_filter: linear-gradient(to right,rgba(0, 0, 0, 0.8), rgba(180, 180, 180, 0.2))
+  overlay_image: /assets/images/banner.jpg
+  actions:
+    - label: "About"
+      url: "#about"
+  caption: "Photo credit: [**Geralt**](https://pixabay.com/photos/registration-log-in-keyboard-man-4226949/)"
+excerpt: "Guidance and practical exercises on creating and using stronger passwords"
+about: 
+  - excerpt: |
+        The Practice Using Passwords project has developed lessons and tools to help older people create and use stronger passwords. By combining facilitated workshop materials with a hands-on training site users can learn about how to generate secure passwords and then practice registering for a demonstrator site followed by a series of lessons on signing in with passwords, one-time passcodes and CAPTCHAs.
+
+        Our training site has been developed to work entirely within the browser without the need for a remote server. We have created a sandboxed environment, including a simulated email account, to allow users to practice in a safe environment. The source code for a our training site is open source and consists of static HTML, JavaScript and CSS. It can be mirrored on other websites to allow inclusion within existing training and outreach.
+
+        Below you will find links to a series of lessons, starting with an explanation of why we need strong passwords and how to generate them. This is followed by lessons on registering and signing in. 
+  - id: "about"
+  - name: "about"
+feature_row:
+  - image_path: /assets/images/learning.jpg
+    alt: "Training Image"
+    title: "Lessons"
+    excerpt: "A collection of lessons"
+    url: "/lessons/"
+    btn_label: "Read More"
+    btn_class: "btn--primary"
+  - image_path: /assets/images/download.jpg
+    alt: "download image"
+    title: "Downloads"
+    btn_label: Downloads
+    excerpt: "Download the complete set of learning material and the training site"
+    url: "/downloads/"
+  - image_path: /assets/images/training.jpg
+    title: "Training Site"
+    excerpt: "Access the online training site to practice lessons 2 - 5"
+    url: "/training/"
+
+feature_contact:
+  - title: "Contact Us"
+    excerpt: 'Contact us by emailing [h.treharne@surrey.ac.uk](mailto:h.treharne@surrey.ac.uk)'
+
+sidebar:
+    nav: "docs"
+  
+---
+<h2 id="about" class="text-center">About the Project</h2>
+
+
+{% include feature_row id="about" type="center" text="justify" %}
+
+{% include feature_row text="center" %}
+
+<a name="contact"></a>
+{% include feature_row id="feature_contact" type="center" text="center" %}
+

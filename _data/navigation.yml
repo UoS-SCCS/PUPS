@@ -1,0 +1,38 @@
+main:
+  - title: "Home"
+    url: /
+  - title: "Lessons"
+    url: /lessons/
+  - title: "Downloads"
+    url: /downloads/
+  - title: "Training Site"
+    url: /training/
+
+lessonnavs:
+  - title: Lessons
+    url: /lessons/
+    children:
+      - title: "What are strong passwords?"
+        url: /lessons/one/
+      - title: "Registration"
+        url: /lessons/two/
+      - title: "Sign In"
+        url: /lessons/three/
+      - title: "Sign In with Code"
+        url: /lessons/four/
+      - title: "Sign In with CAPTCHA"
+        url: /lessons/five/
+
+downloadnavs:
+  - title: Downloads
+    url: /downloads/
+    children:
+      - title: "Facilitator"
+        url: /downloads/#facilitator
+      - title: "Learning Material"
+        url: /downloads/#learning-material
+      - title: "Training Site"
+        url: /downloads/#training-site
+      - title: "All"
+        url: /downloads/#all
+      
