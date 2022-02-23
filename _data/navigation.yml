@@ -27,12 +27,13 @@ downloadnavs:
   - title: Downloads
     url: /downloads/
     children:
+      - title: "All"
+        url: /downloads/#all
       - title: "Facilitator"
         url: /downloads/#facilitator
       - title: "Learning Material"
         url: /downloads/#learning-material
       - title: "Training Site"
         url: /downloads/#training-site
-      - title: "All"
-        url: /downloads/#all
+
       
