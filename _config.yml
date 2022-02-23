@@ -13,11 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Practice Using Passwords
+title: Practice using Passwords
 email: h.treharne@surrey.ac.uk
 description: >- # this means to ignore newlines until "baseurl:"
   A website containing training material, videos and practical exercises for the 
-  Practice Using Passwords project.
+  Practice using Passwords project.
 minimal_mistakes_skin: default
 search: true
 search_full_content: true

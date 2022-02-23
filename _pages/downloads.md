@@ -14,12 +14,12 @@ If you'd like to download everything click the button below to download the zip 
 <a href="#" class="btn btn--primary"><i class="fas fa-download"></i>&nbsp;Download Everything</a>
 
 ## Facilitator
-The facilitator pack contains a facilitator guide to explain the background to the training and copies of learning material to use during training sessions with your users. 
+The facilitator pack contains a facilitator guide to explain the background to the training and copies of the learning materials to use during training sessions with your users. 
 
 <a href="#" class="btn btn--primary"><i class="fas fa-download"></i>&nbsp;Download Facilitator Pack</a>
 
 
-## Learning Material
+## Learning Materials
 Exercise sheets and guides.
 
 <a href="#" class="btn btn--primary"><i class="fas fa-download"></i>&nbsp;Download Learning Materials</a>
