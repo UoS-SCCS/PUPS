@@ -20,6 +20,17 @@ Select one of the lessons below or from the menu on the left
 </a>
 </div>
 
+<div class="lesson-container">
+<a class="lessonlink" href="./setup/">
+<div class="lesson-wrapper">
+<div class="lesson-icon"><i class="fas fa-cog fa-5x fa-fw"></i></div>
+<div class="lesson-text">
+<h2 class="lesson-title">Setting up the Training Site</h2>
+<div class="lesson-desc">Instructions on setting up your training account on the training site</div>
+</div>
+</div>
+</a>
+</div>
 
 <div class="lesson-container">
 <a class="lessonlink" href="./two/">

@@ -19,7 +19,7 @@ function showConsentRequest(){
     acceptBtn.className=".btn .btn--primary"
     acceptBtn.style.marginLeft="5px";
     acceptBtn.addEventListener("click", function(){
-        document.cookie="cookie-consent=true";       
+        document.cookie="cookie-consent=true; SameSite=Strict; Secure";       
         noticeDiv.parentElement.removeChild(noticeDiv);
         updateYouTubeEmbeds();
     })
@@ -30,7 +30,7 @@ function showConsentRequest(){
     rejectBtn.style.marginLeft="5px";
     rejectBtn.className=".btn .btn--primary"
     rejectBtn.addEventListener("click", function(){
-        document.cookie="cookie-consent=false";       
+        document.cookie="cookie-consent=false; SameSite=Strict; Secure";       
         noticeDiv.parentElement.removeChild(noticeDiv);
         updateYouTubeEmbeds();
     })
@@ -44,7 +44,7 @@ function updateYouTubeEmbeds() {
         for(var i = 0; i < videos.length; i++){
             var video = videos.item(i);
             var url = video.dataset.youtubeLink;
-            if(url !== null){
+            if(url !== null && url !==""){
                 var yt_iframe = document.createElement("iframe");
                 yt_iframe.width="560";
                 yt_iframe.height="315";
