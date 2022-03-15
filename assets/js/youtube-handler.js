@@ -19,7 +19,7 @@ function showConsentRequest(){
     acceptBtn.className=".btn .btn--primary"
     acceptBtn.style.marginLeft="5px";
     acceptBtn.addEventListener("click", function(){
-        document.cookie="cookie-consent=true; SameSite=Strict; Secure";       
+        document.cookie="cookie-consent=true; Path=/PUPS;SameSite=Strict; Secure";       
         noticeDiv.parentElement.removeChild(noticeDiv);
         updateYouTubeEmbeds();
     })
@@ -30,7 +30,7 @@ function showConsentRequest(){
     rejectBtn.style.marginLeft="5px";
     rejectBtn.className=".btn .btn--primary"
     rejectBtn.addEventListener("click", function(){
-        document.cookie="cookie-consent=false; SameSite=Strict; Secure";       
+        document.cookie="cookie-consent=false; Path=/PUPS; SameSite=Strict; Secure";       
         noticeDiv.parentElement.removeChild(noticeDiv);
         updateYouTubeEmbeds();
     })
