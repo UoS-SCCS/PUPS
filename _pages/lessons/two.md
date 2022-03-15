@@ -6,3 +6,6 @@ sidebar:
 ---
 
 Lesson Two description
+
+{% include yt-video.html yt-link="" yt-emdeds="" yt-thumbnail="" %}
+
