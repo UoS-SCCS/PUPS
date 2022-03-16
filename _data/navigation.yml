@@ -7,6 +7,7 @@ main:
     url: /downloads/
   - title: "Training Site"
     url: /training/
+    target: "_blank"
 
 lessonnavs:
   - title: Lessons
