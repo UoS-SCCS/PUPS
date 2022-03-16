@@ -1,0 +1,229 @@
+/*******************************************************************************
+*                                                                              *
+* (C) Copyright 2021-2022 University of Surrey                                 *
+*                                                                              *
+* Redistribution and use in source and binary forms, with or without           *
+* modification, are permitted provided that the following conditions are met:  *
+*                                                                              *
+* 1. Redistributions of source code must retain the above copyright notice,    *
+* this list of conditions and the following disclaimer.                        *
+*                                                                              *
+* 2. Redistributions in binary form must reproduce the above copyright notice, *
+* this list of conditions and the following disclaimer in the documentation    *
+* and/or other materials provided with the distribution.                       *
+*                                                                              *
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  *
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   *
+* ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE    *
+* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR          *
+* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         *
+* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS     *
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      *
+* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)      *
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   *
+* POSSIBILITY OF SUCH DAMAGE.                                                  *
+*                                                                              *
+*******************************************************************************/
+html {
+    scroll-behavior: smooth
+}
+
+@-webkit-keyframes fa-beat {
+    0% {
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+
+    100% {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fa-beat {
+    0% {
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+
+    100% {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+}
+
+.fa-parent:hover .fa-hover-beat {
+    -webkit-animation: fa-beat 0.5s infinite ease alternate;
+    animation: fa-beat 0.5s infinite ease alternate;
+}
+
+.fa-beat {
+    -webkit-animation: fa-beat 0.5s infinite ease alternate;
+    animation: fa-beat 0.5s infinite ease alternate;
+}
+
+.fa-parent:hover .fa-hover-spin {
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+}
+
+.fa-pulse {
+    -webkit-animation: fa-spin 1s infinite steps(8);
+    animation: fa-spin 1s infinite steps(8);
+}
+
+.fa-parent:hover .fa-hover-pulse {
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+}
+.help-popover {
+    width:200px;
+}
+:root {
+--help_color: #e83283;
+}
+
+.card-icon {
+font-size:80px;
+margin-top:5px;
+}
+.card-icon-success {
+    font-size:80px;
+    margin-top:5px;
+    color:green;
+    position:absolute;
+    left:calc(50% - 40px);
+    }
+.reset-btn {
+    position:absolute;
+    right:15px;
+    top:15px;
+    background-color: #c52b6f;
+    
+
+}
+
+.reset-btn:hover {
+    color: #fff;
+    background-color: #e83283;
+    box-shadow: 3px 3px #333;
+    border-color: #ba2869;
+}
+.card-disabled {
+    opacity: 30%;
+}
+.sccs-logo {
+    margin-bottom:10px;
+}
+.overlay-help {
+    position:absolute!important;
+    left:10px;
+    top:10px;
+}
+
+#resetContainer .btn-primary:hover {
+    box-shadow: 3px 3px #333;
+    
+}
+.btn-info:hover {
+    box-shadow: 3px 3px #333;
+}
+.btn-primary:hover {
+    box-shadow: 3px 3px #333;
+    
+}
+.bg-secondary .btn-primary:hover {
+    box-shadow: 3px 3px #333;
+    
+}
+.bg-light .btn-primary {
+    background-color: #c52b6f;
+    
+    
+}
+.bg-light .btn-primary:hover {
+    color: #fff;
+    background-color: #e83283;
+    box-shadow: 3px 3px #333;
+    border-color: #ba2869;
+}
+.popover-header {
+    color:black;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.captcha-img {
+    width:100%;
+    height:100%;
+}
+.col-no-padding{
+    padding: 2px !important;
+}
+.selected-cell > img {
+    padding:15px;
+}
+.selected-cell > i {
+    
+    display:block !important;
+}
+.check-icon {
+    color: var(--bs-primary);
+    font-size:1.5rem;
+    position:absolute;
+    display:none;
+}
+.zero-top-padding {
+    padding-top:0px;
+}
+.custom-popover {
+    padding:0 !important;
+    min-width: 300px;
+}
+.custom-popover-container {
+    max-width: 312px;
+    padding:5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.clear-label{
+    background-image: none;
+}
+#newAccount {
+    font-weight: bold;
+}
+
+.btn-no-focus:focus{
+    border-color: #0d6efd;
+    border-width:1px;
+    box-shadow: unset!important;
+}
+.captcha-img-cell:focus{
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 50%);
+    outline:0;
+}
+#captcha-pop:focus{
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    outline:0;
+}
+
+.entered-username {
+    font-weight: bold;
+}
+
+.fail {
+    color: red;
+}
+
+.pass {
+    color: green;
+}

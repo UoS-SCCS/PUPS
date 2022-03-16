@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--
+/*******************************************************************************
+*                                                                              *
+* (C) Copyright 2021-2022 University of Surrey                                 *
+*                                                                              *
+* Redistribution and use in source and binary forms, with or without           *
+* modification, are permitted provided that the following conditions are met:  *
+*                                                                              *
+* 1. Redistributions of source code must retain the above copyright notice,    *
+* this list of conditions and the following disclaimer.                        *
+*                                                                              *
+* 2. Redistributions in binary form must reproduce the above copyright notice, *
+* this list of conditions and the following disclaimer in the documentation    *
+* and/or other materials provided with the distribution.                       *
+*                                                                              *
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  *
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   *
+* ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE    *
+* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR          *
+* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         *
+* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS     *
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      *
+* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)      *
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   *
+* POSSIBILITY OF SUCH DAMAGE.                                                  *
+*                                                                              *
+*******************************************************************************/
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="./config/base_config.js"></script>
+    <script src="./config/pageconfig_base.js"></script>
+    <!--refactor to dynamically load-->
+    <script src="./modules/storage/storage.js"></script>
+    <script src="./modules/server/server.js"></script>
+    <script src="./modules/email/email.js"></script>
+    <script src="./js/sccs.js"></script>
+    <script src="./js/pages/index.js"></script>
+
+
+    <link href="./css/bootstrap-glass.css" rel="stylesheet">
+    <link href="./css/all.min.css" rel="stylesheet">
+    <link href="./css/sccs.css" rel="stylesheet">
+    <link href="./css/fonts.css" rel="stylesheet">
+    <title>Practice Using Passwords</title>
+
+</head>
+
+<body onload="showTrainingLanding();">
+
+    <main class="mt-5">
+        <div class="container">
+
+            <!--Section: Best Features-->
+            <section id="introduction" class="text-center min-vh-100">
+                <div class="shadow p-3 mb-5 bg-light text-black rounded">
+                    <img src="./imgs/logo.png" class="sccs-logo" alt="Surrey Centre for Cyber Security Logo" title="SCCS Logo">
+                    <h1>Practice Using Passwords Training Site</h1>
+                    
+                    <!-- Heading -->
+                    <h2 class="mb-3">Introduction</h2>
+
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center mb-4">
+
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <p>Welcome to the Practice Using Passwords Training Site.</p>
+                            <!-- Description -->
+                            <p>Here is the learning material to support the lessons
+                                for registering and signing in to a website.
+
+                                By clicking Next through the following screens you will be guided through setting up
+                                your training account. After that you can access the lessons.
+                            </p>
+                            <p><strong>Click Next to get started!</strong></p>
+
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+                    <a class="btn btn-primary" href="#emailintro" role="button">Next</a>
+                </div>
+            </section>
+
+            <!--Section: Best Features-->
+            <section id="emailintro" class="text-center min-vh-100">
+                <hr class="my-5">
+                <div class="shadow p-3 mb-5 bg-light text-black  rounded">
+                    <!-- Heading -->
+                    <h2 class="mb-3 font-weight-bold">Getting Started</h2>
+
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center mb-4">
+
+                        <!--Grid column-->
+                        <div class="col-md-8">
+
+                            <!-- Description -->
+                            <p class="grey-text">Please provide a
+                                name to create your training account, which includes a temporary training email address. This email address is only for use during the
+                                following lessons and is separate to your normal email address. It cannot be used to
+                                send or receive emails outside of the training site. <!--By using a temporary training email account it allows
+                                you to freely try out the lessons without affecting your real email account.-->
+                            </p>
+                            <p>Once you have finished the training click the "Finish Training" button at the bottom of the page and your training account and temporary email address will be deleted, you do
+                                not need to doing anything further.</p>
+                            <p>Your temporary email address will be of the form <em>name</em>@example.com where
+                                <em>name</em> will be the value you provide below. Use your first name,
+                                for example, joe, mary, leslie.
+                            </p>
+                            <p>Your chosen name cannot have any spaces in it, but don't
+                                worry, these will be automatically removed if you do try
+                                to enter any of them.
+                            </p>
+                            <p><label for="accountName">Please enter your chosen name below:</label> </p>
+                            <!-- validate to ensure it doesn't contain another email address -->
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-8">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control text-right bg-white"
+                                            style="text-align: right;" id="accountName" placeholder="Enter Name"
+                                            aria-label="Name" aria-describedby="basic-addon2" pattern="[A-Za-z0-9]+"
+                                            title="Should contain only your first name consisting of just letters and numbers">
+                                        <span class="input-group-text bg-dark" id="basic-addon2">@example.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+                    <a class="btn btn-primary" href="#emailcomplete" onclick="return configureAccount(event);"
+                        role="button">Next</a>
+                </div>
+            </section>
+
+            <div id="popoverHelp" class="sticky-top fa-parent"
+                style="padding-top:10px;display:inline-block;margin-left:-1000px;left:10px;" data-bs-toggle="popover"
+                data-bs-html="true" data-bs-content="" data-bs-title="Practice Using Passwords"
+                data-bs-placement="bottom">
+                <i class="fas fa-question-circle fa-hover-beat"
+                    style="color:rgba(var(--bs-primary-rgb));font-size:48pt"></i>
+            </div>
+            <!--Section: Best Features-->
+            <section id="emailcomplete" class="text-center min-vh-100">
+                <hr class="my-5">
+
+                <div class="shadow p-3 mb-5 bg-light text-black  rounded">
+                    <!-- Heading -->
+                    <h2 class="mb-3 font-weight-bold">Training Email Account</h2>
+
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center mb-4">
+
+                        <!--Grid column-->
+                        <div class="col-md-8">
+
+                            <!-- Description -->
+                            <p>Thank you, we have setup your new training email address: <span id="newAccount"></span></p>
+                            <p>You can access your training email account by clicking the Open Training Email Account button below,
+                                which
+                                will open a new tab containing your training email(s). Don't worry if you close
+                                the tab or forget your temporary email address. Both can be accessed at any point during
+                                the training by clicking on the question mark symbol in the top left of the page.
+                            </p>
+                            <!--<p><i class="fas fa-question-circle"
+                                    style="background-color:white;color:rgba(var(--bs-primary-rgb));font-size:48pt"></i>
+                                Click for help during the training</p>-->
+                            <a class="btn btn-primary" href="#" onclick="return openEmailAccount();return false;"
+                                role="button">Open Training
+                                Email Account</a>
+
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <a class="btn btn-primary" href="#traininglist" role="button">Next</a>
+                </div>
+                <!--Grid row-->
+
+            </section>
+
+
+            <!--Section: Best Features-->
+            <section id="traininglist" class="text-center min-vh-100">
+                <hr class="my-5">
+                <div class="shadow p-3 mb-5 bg-light text-black  rounded" style="position:relative">
+                    <a id="resetBtn" onclick="resetTraining();return false;" href="#"
+                        class="btn btn-primary reset-btn">Start Training Again</a>
+                    <!-- Heading -->
+                    <h2 class="mb-3 font-weight-bold">Practice Using Passwords</h2>
+                    <p>You should have already completed "Lesson 1 - What is a password?" Next you must complete "Lesson 2 - Registration" before you can continue to later lessons.
+                    </p>
+                    <h3>Training Lessons</h3>
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center mb-4">
+
+                        <!--Grid column-->
+                        <div class="col-md-8">
+                            <div class="row d-flex">
+                                <div class="col-md-4">
+                                    <div class="card bg-light shadow-none ">
+                                        <div class="card-body justify-content-center">
+                                            <h4 class="card-title text-black">Lesson 2</h4>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="regCard" class="card bg-white">
+                                        <i class="fas fa-address-card card-icon"></i>
+                                        <i id="regCardSuccess" class="fas fa-check card-icon-success d-none"></i>
+                                        <div class="card-body bg-white text-black">
+                                            <h5 class="card-title">Registration</h5>
+                                            <p class="card-text">Registration and strong password selection</p>
+                                            <a id="regCardBtn" href="#" class="btn btn-primary"
+                                                onclick="startReg();return false;">Start</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row d-flex justify-content-center mb-4">
+
+                        <!--Grid column-->
+                        <div class="col-md-8">
+                            <div class="row d-flex">
+                                <div class="col-md-4">
+                                    <div class="card bg-light shadow-none ">
+                                        <div class="card-body justify-content-center">
+                                            <h4 class="card-title text-black">Lesson 3</h4>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="loginCard" class="card  bg-white">
+                                        <i class="fas fa-sign-in-alt card-icon"></i>
+                                        <i id="loginCardSuccess" class="fas fa-check card-icon-success d-none"></i>
+                                        <div class="card-body  bg-white text-black">
+                                            <h5 class="card-title">Basic Sign In</h5>
+                                            <p class="card-text">Basics of signing in to a website</p>
+                                            <a id="loginCardBtn" href="#" class="btn btn-primary"
+                                                onclick="startLogin();return false;">Start</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row d-flex justify-content-center mb-4">
+
+                        <!--Grid column-->
+                        <div class="col-md-8">
+                            <div class="row d-flex">
+                                <div class="col-md-4">
+                                    <div class="card bg-light shadow-none ">
+                                        <div class="card-body justify-content-center">
+                                            <h4 class="card-title text-black">Lesson 4</h4>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="loginAdv1Card" class="card  bg-white">
+                                        <i class="fas fa-at card-icon"></i>
+                                        <i id="loginAdv1CardSuccess" class="fas fa-check card-icon-success d-none"></i>
+                                        <div class="card-body  bg-white text-black">
+                                            <h5 class="card-title">Sign In with a Security Code</h5>
+                                            <p class="card-text">Sign in with an additional email security code</p>
+                                            <a id="loginAdv1CardBtn" href="#" onclick="startLoginOtp();return false;"
+                                                class="btn btn-primary">Start</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row d-flex justify-content-center mb-4">
+
+                        <!--Grid column-->
+                        <div class="col-md-8">
+                            <div class="row d-flex">
+                                <div class="col-md-4">
+                                    <div class="card bg-light shadow-none ">
+                                        <div class="card-body justify-content-center">
+                                            <h4 class="card-title text-black">Lesson 5</h4>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="loginAdv2Card" class="card bg-white">
+                                        <i class="fas fa-eye card-icon"></i>
+                                        <i id="loginAdv2CardSuccess" class="fas fa-check card-icon-success d-none"></i>
+                                        <div class="card-body  bg-white text-black">
+                                            <h5 class="card-title">Sign In with CAPTCHA</h5>
+                                            <p class="card-text">Sign in with an additional CAPTCHA security check</p>
+                                            <a id="loginAdv2CardBtn" href="#" class="btn btn-primary"
+                                                onclick="startLoginCaptcha();return false;">Start</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row d-flex justify-content-center mb-4">
+                        <div class="col-md-8">
+                            <a id="finishBtn" href="#" class="btn btn-primary" onclick="finish();return false;">Finish
+                                Training</a>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+        </div>
+        </section>
+
+
+
+
+
+
+
+
+</body>
+
+<script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--
+/*******************************************************************************
+*                                                                              *
+* (C) Copyright 2021-2022 University of Surrey                                 *
+*                                                                              *
+* Redistribution and use in source and binary forms, with or without           *
+* modification, are permitted provided that the following conditions are met:  *
+*                                                                              *
+* 1. Redistributions of source code must retain the above copyright notice,    *
+* this list of conditions and the following disclaimer.                        *
+*                                                                              *
+* 2. Redistributions in binary form must reproduce the above copyright notice, *
+* this list of conditions and the following disclaimer in the documentation    *
+* and/or other materials provided with the distribution.                       *
+*                                                                              *
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  *
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   *
+* ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE    *
+* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR          *
+* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         *
+* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS     *
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      *
+* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)      *
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   *
+* POSSIBILITY OF SUCH DAMAGE.                                                  *
+*                                                                              *
+*******************************************************************************/
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="./config/base_config.js"></script>
+    <script src="./config/pageconfig_base.js"></script>
+    <!--refactor to dynamically load-->
+    <script src="./modules/storage/storage.js"></script>
+    <script src="./modules/server/server.js"></script>
+    <script src="./modules/captcha/captchas.js"></script>
+    <script src="./modules/captcha/ui.js"></script>
+    <script src="./modules/email/email.js"></script>
+    <script src="./js/sccs.js"></script>
+    <script src="./js/pages/otp.js"></script>
+    <script src="./js/pages/login.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/all.min.css" rel="stylesheet">
+    <link href="./css/fonts.css" rel="stylesheet">
+    <link href="./css/sccs.css" rel="stylesheet">
+    <title>Sign in</title>
+
+</head>
+
+<body onload="prepHelpPopover();showSignIn();renderCaptcha();prepareCaptchaPopover();">
+    <div id="popoverHelp" class="sticky-top fa-parent overlay-help" data-bs-toggle="popover" data-bs-html="true"
+        data-bs-content="" data-bs-title="Practice Using Passwords" data-bs-placement="bottom">
+        <i class="fas fa-question-circle fa-hover-beat" style="color:var(--help_color);font-size:48pt"></i>
+    </div>
+
+    <div class="jumbotron d-flex align-items-center min-vh-100">
+        <div role="main" id="signInContainer" class="container fade">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card-group mb-0">
+                        <div class="card p-4">
+                            <div class="card-body">
+                                <h1>Sign in</h1>
+                                <p class="text-muted">Sign in to your account</p>
+                                <form class="needs-validation"
+                                    onsubmit="javascript:server.login(this,pupConfig.getField('useOtp',false));return false;"
+                                    id="loginForm" autocomplete="off">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        <input id="username" name="username" pattern="[a-zA-Z0-9]+@example\.com"
+                                            type="email" class="form-control" list="datalistOptions" required
+                                            placeholder="Email address"
+                                            onblur="document.getElementById('loginForm').checkValidity();"
+                                            title="Please provide an email address ending with @example.com">
+                                        <datalist id="datalistOptions">
+
+                                        </datalist>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        <input type="password" id="password" name="password" class="form-control"
+                                            required placeholder="Password" autocomplete="new-password" title="Please enter your password here">
+                                        <button class="btn btn-primary" title="Click to show the password you entered"
+                                            type="button" onclick="showPasswordTxt();return false;"><i id="show-button"
+                                                class="fa fa-eye"></i></button>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <a href="#" title="Click here if you forgot your password and need to reset it"
+                                            onclick="javascript:loadForgot();return false;">Forgot your password?</a>
+                                    </div>
+
+
+                                    <div id="captchaContainer"
+                                        class="row justify-content-center d-none input-group mb-3">
+                                        <div class="col-md-12">
+                                            <div class="card bg-light">
+                                                <div class="card-body">
+
+                                                    <i id="captcha-pop" class="far fa-square" role="checkbox"
+                                                        aria-checked="false" aria-label="Check to prove you are human"
+                                                        tabindex="0" style="font-size:1.6rem"
+                                                        onclick="showCaptcha(this)"
+                                                        onkeypress="handleCaptchaKeypress(event, this)"
+                                                        data-bs-toggle="popover" data-bs-html="true" data-bs-content=""
+                                                        data-bs-placement="right"></i><span
+                                                        class="align-top">&nbsp;&nbsp;&nbsp;I'm not a robot</span>
+                                                    <div id="captchaerror" class="text-danger"></div>
+                                                    <div class="invalid-tooltip">
+                                                        CAPTCHA test not passed
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button type="submit" id="signInCaptchaBtn"
+                                                class="btn btn-primary px-4">Sign-in</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-secondary py-5 d-md-down-none" style="width:44%">
+                            <div class="card-body text-center">
+                                <div>
+                                    <h2>Don't have an account?</h2>
+
+                                    <button type="button" class="btn btn-primary mt-3"
+                                        onclick="registerAlert();return false;">Register</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div role="main" id="signInCompleteContainer" class="container fade d-none">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card-group mb-0">
+                        <div class="card p-4">
+                            <div class="card-body text-center">
+                                <h1>Sign in complete</h1>
+                                <p class="text-muted">You have successfully signed in to your account.
+                                </p>
+                                <div>
+                                    <i class="fas fa-check" style="font-size:88px;color:green;"></i>
+                                </div>
+
+
+                                <button type="button" class="btn btn-info mt-3"
+                                    onclick="moveNext();return false;">Return to Training Site</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div role="main" id="signInOTPErrorContainer" class="container fade d-none">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card-group mb-0">
+                        <div class="card p-4">
+                            <div class="card-body text-center">
+                                <h1>Incorrect Security Code</h1>
+                                <p class="text-muted">The security code does not match the one sent. If you requested
+                                    multiple codes you
+                                    must use the latest code. Press Try Again to request a new code and try again.
+                                </p>
+                                <div>
+                                    <i class="fas fa-times" style="font-size:88px;color:red;"></i>
+                                </div>
+
+                                <button type="button" class="btn btn-info mt-3" onclick="retryOtp();return false;">Try
+                                    Again</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div role="main" id="signInOTPContainer" class="container fade d-none">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card-group mb-0">
+                        <div class="card p-4">
+                            <div class="card-body text-center">
+                                <h1>Security Code</h1>
+                                <p class="text-muted">We've sent you an email containing a security code. Please check
+                                    your emails
+                                    and enter the code below.
+                                </p>
+
+                                <div class="row mb-4">
+                                    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
+                                        <input type="number" data-sccs-otp-idx="1" id="sccs-otp-1"
+                                            oninput="checkOTPEntry(this);" class="form-control text-lg text-center"
+                                            placeholder="_" aria-label="2fa">
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
+                                        <input type="number" data-sccs-otp-idx="2" id="sccs-otp-2"
+                                            oninput="checkOTPEntry(this);" class="form-control text-lg text-center"
+                                            placeholder="_" aria-label="2fa">
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
+                                        <input type="number" data-sccs-otp-idx="3" id="sccs-otp-3"
+                                            oninput="checkOTPEntry(this);" class="form-control text-lg text-center"
+                                            placeholder="_" aria-label="2fa">
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-2 pe-0 pe-md-2">
+                                        <input type="number" data-sccs-otp-idx="4" id="sccs-otp-4"
+                                            oninput="checkOTPEntry(this);" class="form-control text-lg text-center"
+                                            placeholder="_" aria-label="2fa">
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-2 pe-0 pe-md-2">
+                                        <input type="number" data-sccs-otp-idx="5" id="sccs-otp-5"
+                                            oninput="checkOTPEntry(this);" class="form-control text-lg text-center"
+                                            placeholder="_" aria-label="2fa">
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-2 pe-0 pe-md-2">
+                                        <input type="number" data-sccs-otp-idx="6" id="sccs-otp-6"
+                                            oninput="checkOTPEntry(this);" class="form-control text-lg text-center"
+                                            placeholder="_" aria-label="2fa">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button" id="verifyOTPBtn" class="btn btn-primary"
+                                        onclick="verifyOTP();">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div role="main" id="" class="container d-none">
+            <div id="signInCAPTCHAContainer" class="container" style="padding:0px">
+                <!--<div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card-group mb-0">-->
+                <div class="card border-0">
+                    <div class="card-header bg-primary text-white">
+                        <div>Select all squares with
+                            <h3 id="captchaGoal" style="font-weight:bold"></h3>
+                        </div>
+                    </div>
+                    <div class="card-body text-center zero-top-padding">
+                        <div class="row no-gutters">
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="0" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell top left">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" alt="CAPTCHA image top left" id="captcha-img-0">
+                            </div>
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="1" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell top middle">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" alt="CAPTCHA image top middle" id="captcha-img-1">
+                            </div>
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="2" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell top right">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" alt="CAPTCHA image top right" id="captcha-img-2">
+                            </div>
+
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="3" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell middle left">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" alt="CAPTCHA image middle left" id="captcha-img-3">
+                            </div>
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="4" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell dead centre">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" alt="CAPTCHA image dead centre" id="captcha-img-4">
+                            </div>
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="5" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell middle right">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" alt="CAPTCHA image middle right" id="captcha-img-5">
+                            </div>
+
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="6" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell bottom left">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" id="captcha-img-6" alt="CAPTCHA image bottom left">
+                            </div>
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="7" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell bottom middle">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" id="captcha-img-7" alt="CAPTCHA image bottom middle">
+                            </div>
+                            <div class="col-4 square no-gutters col-no-padding captcha-img-cell"
+                                data-sccs-captcha-idx="8" onclick="selectCaptcha(this)"
+                                onkeypress="selectCaptchaKey(event,this)" role="checkbox" tabindex="0"
+                                title="CAPTCHA cell bottom right">
+                                <i class="fas fa-check-circle check-icon"></i>
+                                <img class="captcha-img" id="captcha-img-8" alt="CAPTCHA image bottom right">
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="text-right">
+                            <button type="button" id="verifyCaptchaBtn" class="btn btn-primary"
+                                onclick="verifyCaptcha();">Verify</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div>
+                </div>
+            </div>-->
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="messageModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 id="modalHeading" class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div id="modalBody" class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="modalCloseButton" type="button" class="btn btn-danger"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+<script>
+
+
+
+</script>
+
+</html>

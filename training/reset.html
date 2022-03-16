@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+/*******************************************************************************
+*                                                                              *
+* (C) Copyright 2021-2022 University of Surrey                                 *
+*                                                                              *
+* Redistribution and use in source and binary forms, with or without           *
+* modification, are permitted provided that the following conditions are met:  *
+*                                                                              *
+* 1. Redistributions of source code must retain the above copyright notice,    *
+* this list of conditions and the following disclaimer.                        *
+*                                                                              *
+* 2. Redistributions in binary form must reproduce the above copyright notice, *
+* this list of conditions and the following disclaimer in the documentation    *
+* and/or other materials provided with the distribution.                       *
+*                                                                              *
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  *
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   *
+* ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE    *
+* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR          *
+* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         *
+* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS     *
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      *
+* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)      *
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   *
+* POSSIBILITY OF SUCH DAMAGE.                                                  *
+*                                                                              *
+*******************************************************************************/
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="./config/base_config.js"></script>
+    <script src="./config/pageconfig_base.js"></script>
+    <!--refactor to dynamically load-->
+    <script src="./modules/storage/storage.js"></script>
+    <script src="./modules/server/server.js"></script>
+    <script src="./modules/email/email.js"></script>
+    <script src="./js/sccs.js"></script>
+    <script src="./js/pages/reset.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/all.min.css" rel="stylesheet">
+    <link href="./css/fonts.css" rel="stylesheet">
+    <link href="./css/sccs.css" rel="stylesheet">
+    <title>Reset Password</title>
+</head>
+
+<body onload="prepHelpPopover();showReset()">
+    <div id="popoverHelp" class="sticky-top fa-parent overlay-help" data-bs-toggle="popover" data-bs-html="true"
+        data-bs-content="" data-bs-title="Practice Using Passwords" data-bs-placement="bottom">
+        <i class="fas fa-question-circle fa-hover-beat" style="color:var(--help_color);font-size:48pt"></i>
+    </div>
+    <div class="jumbotron d-flex align-items-center min-vh-100">
+        <div role="main" id="resetContainer" class="container fade">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card-group mb-0">
+                        <div class="card p-4">
+                            <div class="card-body">
+                                <h1>Password Reset</h1>
+                                <p class="text-muted">Use this form to set a new password.</p>
+                                <form id="registerForm" class="needs-validation"
+                                    onsubmit="javascript:server.resetPassword(this);return false;" autocomplete="off">
+                                    <input type="hidden" id="uid" name="uid">
+                                    <div class="input-group mb-3 has-validation">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        <input id="username" name="username" pattern="[a-zA-Z0-9]+@example\.com"
+                                            type="email" class="form-control"
+                                            onblur="document.getElementById('registerForm').checkValidity();"
+                                            title="Please provide an email address ending with @example.com" required
+                                            placeholder="Email address" disabled>
+
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        <input type="password" id="password" name="password" class="form-control"
+                                            required placeholder="Password" autocomplete="new-password"  title="Please enter your new password here">
+                                        <button class="btn btn-primary" title="Click to show the password you entered" type="button" onclick="showPasswordTxt();return false;"><i id="show-button"  class="fa fa-eye"></i></button>
+                                    </div>
+                                    <!--<div class="input-group mb-4">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        <input type="password" id="password2" onchange="validatePasswords()"
+                                            name="password2" class="form-control " required
+                                            placeholder="Repeat password">
+                                        <div id="validationPasswordFeedback2" class="invalid-feedback">
+                                            Passwords must match
+                                        </div>
+                                    </div>-->
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <button type="submit" class="btn btn-primary px-4">Set Password</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-secondary py-5 d-md-down-none" style="width:44%">
+                            <div class="card-body text-center">
+                                <div>
+                                    <h2>Already registered?</h2>
+
+                                    <button type="button" class="btn btn-primary mt-3"
+                                        onclick="signInButton();return false;">Sign in</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div role="main" id="resetCompleteContainer" class="container fade d-none">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card-group mb-0">
+                        <div class="card p-4">
+                            <div class="card-body text-center">
+                                <h1>Password Reset Complete</h1>
+                                <p class="text-muted">Your password has been updated. You should now be able to sign in with your new password.
+                                </p>
+                                <div>
+                                    <i class="fas fa-check" style="font-size:88px;color:green;"></i>
+                                </div>
+
+                                <button type="button" class="btn btn-info mt-3"
+                                    onclick="javascript:window.location='./login.html'">Sign In</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="messageModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 id="modalHeading" class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div id="modalBody" class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="modalCloseButton" type="button" class="btn btn-danger"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+
+</html>

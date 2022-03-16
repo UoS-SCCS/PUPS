@@ -1,0 +1,495 @@
+/*******************************************************************************
+*                                                                              *
+* (C) Copyright 2021-2022 University of Surrey                                 *
+*                                                                              *
+* Redistribution and use in source and binary forms, with or without           *
+* modification, are permitted provided that the following conditions are met:  *
+*                                                                              *
+* 1. Redistributions of source code must retain the above copyright notice,    *
+* this list of conditions and the following disclaimer.                        *
+*                                                                              *
+* 2. Redistributions in binary form must reproduce the above copyright notice, *
+* this list of conditions and the following disclaimer in the documentation    *
+* and/or other materials provided with the distribution.                       *
+*                                                                              *
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  *
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   *
+* ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE    *
+* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR          *
+* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         *
+* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS     *
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      *
+* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)      *
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   *
+* POSSIBILITY OF SUCH DAMAGE.                                                  *
+*                                                                              *
+*******************************************************************************/
+/* CSS used here will be applied after bootstrap.css */
+:root {
+    --page_bg: #f5f5f5;
+    --email_bg: #ffffff;
+    --button_highlight_active: #e8ebee;
+    --unread_email_list: #ffffff;
+    --read_email_list: #f5f5f5;
+    --button_text_color: #666;
+    --button_hover_color: #333;
+    --item_text_color: #1a1b1f;
+    --item_highlight_color: #cccccc;
+    --button_low_light: #aaaaaa;
+    --logo_color: darkblue;
+    --tab1-tab-color: red;
+    --tab2-tab-color: blue;
+    --tab3-tab-color: green;
+    --default-tab-color: #333
+}
+
+body {
+    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    font-size: .875rem;
+    letter-spacing: .2px;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    overflow: hidden;
+
+}
+.toast {
+    z-index:2000;
+}
+.virtual-logo {
+    font-size: 42pt;
+    color: var(--logo_color);
+    margin: 5px;
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--logo_color);
+    vertical-align: middle;
+}
+
+#sccs-email {
+    height: 100vh;
+}
+
+#sccs-email .sccs-compose {
+    color: var(--item_text_color);
+    font-size: 1rem;
+    background-color: var(--email_bg);
+    border-radius: 2rem;
+    margin-left: 0.5rem;
+    padding-top: 0.555rem;
+    
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    border-style: none;
+    border-color: var(--button_low_light);
+    line-height: 2rem;
+    box-shadow: 0px 1px 2px 0px rgba(60, 64, 67, .30), 0px 2px 6px 2px rgba(60, 64, 67, .15);
+
+}
+
+#sccs-email .sccs-compose:hover {
+    box-shadow: 0px 2px 4px 0px rgba(60, 64, 67, .30), 0px 4px 12px 4px rgba(60, 64, 67, .15);
+    background-color: var(--button_highlight_active);
+
+}
+
+#sccs-email .sccs-compose .button-text {
+    vertical-align: top;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 0.855rem;
+}
+
+#sccs-email .sccs-compose i {
+    color: var(--logo_color);
+    font-size: 2rem;
+    margin-right: 0.5rem;
+
+}
+
+#sccs-email .account-name {
+    vertical-align: middle;
+    color: #1a1b1f;
+    font-size: 2rem;
+    line-height: 2rem;
+
+}
+
+.sccs-email-check {
+    display: inline-block;
+}
+
+
+.sccs-email-content {
+    background-color: var(--email_bg);
+    padding: 1rem;
+}
+
+.sccs-email-content .subject-row {
+    margin-bottom: 1rem;
+}
+
+#sccs-email .sccs-control-row {
+    height: 2.5rem;
+}
+
+#sccs-email .sccs-tags-list .unread {
+    font-weight: 700;
+}
+
+#sccs-email .sccs-tags-list .active .badge {
+    font-weight: 700;
+}
+
+#sccs-email .sccs-control-row .btn {
+    width: 36px;
+    height: 36px;
+    padding: 0px;
+    color: var(--button_text_color);
+}
+
+#sccs-email .sccs-control-row .btn:hover {
+    background-color: var(--button_highlight_active);
+    color: var(--button_hover_color);
+
+}
+
+
+
+.sccs-email-content .reply-buttons-row i {
+    padding-right: 5px;
+}
+
+.sccs-email-content .sccs-time-control .btn {
+    width: 36px;
+    height: 36px;
+    padding: 0px;
+    color: var(--button_text_color);
+}
+
+.sccs-email-content .sccs-time-control .btn:hover {
+    background-color: var(--button_highlight_active);
+    color: var(--button_hover_color);
+
+}
+
+.sccs-email-content .sccs-time-control .sccs-received-time {
+    vertical-align: text-top;
+}
+
+.sccs-email-content .header-row {
+    margin-bottom: 0.5rem;
+}
+
+.sccs-email-content .reply-buttons-row {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.sccs-email-content .reply-buttons-row .btn-reply {
+    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    font-size: .875rem;
+    letter-spacing: .2px;
+    border-color: var(--item_highlight_color);
+    color: var(--button_text_color);
+    background-color: var(--email_bg);
+}
+
+.sccs-email-content .reply-buttons-row .fa-square-full {
+    font-size: 2.4rem;
+    padding-right: 0px;
+    color: var(--email_bg);
+}
+
+.sccs-email-content .reply-buttons-row .btn-reply:hover {
+
+    background-color: var(--button_highlight_active);
+}
+
+.sccs-email-content .fa-user-circle {
+    font-size: 2.4rem;
+    color: var(--item_highlight_color);
+}
+
+.sccs-email-content .fa-square-full {
+    font-size: 2.4rem;
+    color: var(--email_bg);
+}
+
+.sccs-email-content .sccs-email-to {
+    font-weight: 700;
+
+}
+
+.sccs-email-content .sccs-email-subject {
+
+    font-size: 1.55rem;
+}
+
+.sccs-email-content .sccs-email-from {
+    font-size: .775rem;
+}
+
+#sccs-email .sccs {
+    background-color: var(--page_bg);
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0
+}
+
+#sccs-email .sccs-email-item {
+    border-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-bottom-color: var(--page_bg);
+    color: var(--item_text_color);
+}
+
+#sccs-email .sccs-compose-row {
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+#sccs-email .sccs-compose-col {
+    text-align: left;
+}
+
+#sccs-email .sccs-email-item:hover {
+    border-top-style: solid;
+    border-left-style: solid;
+    border-top-color: var(--item_highlight_color);
+    z-index: 100;
+    box-shadow: 0px 1px 2px 0px rgba(60, 64, 67, .30), 0px 2px 6px 2px rgba(60, 64, 67, .15);
+
+}
+
+#sccs-email .sccs-email-item .badge {
+    color: var(--item_text_color);
+    font-size: 9pt;
+}
+
+#sccs-email .email-listing .sccs-email-item .from {
+    width: 20%;
+    max-width: 200px;
+    display: inline-block;
+
+}
+
+#sccs-email .email-listing .sccs-email-item.unread .from {
+    font-weight: 700;
+
+}
+
+#sccs-email .email-listing .sccs-email-item.unread .subject {
+    font-weight: 700;
+
+}
+
+#sccs-email .email-listing .sccs-email-item * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#sccs-email .email-listing .sccs-email-item .msg {
+    overflow: hidden;
+    display: inline-block;
+    width: 30%;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+
+}
+
+#sccs-email .email-listing .sccs-email-item.unread .msg {
+    color: var(--button_text_color);
+}
+
+#sccs-email .email-listing .sccs-email-item.read .msg {
+    color: var(--button_text_color);
+}
+
+#sccs-email .email-listing .sccs-email-item.read {
+    background-color: var(--read_email_list);
+    border-top-color: var(--read_email_list);
+    border-left-color: var(--read_email_list);
+    border-right-color: var(--read_email_list);
+    border-bottom-color: var(--read_email_list);
+}
+
+#sccs-email .email-listing .sccs-email-item.unread {
+    background-color: var(--unread_email_list);
+    border-top-color: var(--unread_email_list);
+    border-left-color: var(--unread_email_list);
+    border-right-color: var(--unread_email_list);
+
+    border-bottom-color: var(--read_email_list);
+}
+
+#sccs-email .email-listing .sccs-email-item.read .badge {
+    font-weight: normal;
+
+}
+
+#sccs-email .email-listing .fa-star {
+    min-width: 40px;
+    text-align: center;
+    color: var(--button_low_light);
+}
+
+
+#sccs-email .email-listing {
+    padding-left: 0px;
+
+}
+
+#sccs-email .nav-link.active {
+    background-color: var(--button_highlight_active);
+    color: var(--item_text_color);
+    border-top-right-radius: 5em;
+    border-bottom-right-radius: 5em;
+}
+
+#sccs-email .nav-link.active>.badge {
+    background-color: inherit;
+    color: var(--item_text_color);
+}
+
+#sccs-email .nav-link {
+    color: var(--item_text_color);
+    transition: none;
+}
+
+#sccs-email .nav-link .cat-icon {
+    margin-right: 10px;
+    width: 30px;
+    color: var(--button_text_color);
+}
+
+#sccs-email .nav-link>.badge {
+    background-color: inherit;
+    color: var(--item_text_color);
+    font-size: 0.855rem;
+    font-weight: normal;
+}
+
+#sccs-email .categories {
+    background-color: var(--email_bg);
+}
+
+#sccs-email .categories .nav-item {
+    background-color: var(--email_bg);
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: 250px;
+    text-align: left
+}
+
+#sccs-email .categories .nav-item:hover {
+    background-color: var(--button_highlight_active);
+}
+
+#sccs-email .categories .nav-link {
+    background-color: inherit;
+    border-radius: 0px;
+    border-style: none;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 10pt;
+    color: var(--button_text_color);
+}
+
+#sccs-email .categories .nav-link.active {
+    color: var(--item_text_color);
+    background-color: inherit;
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: var(--button_low_light);
+}
+
+#sccs-email .categories .nav-link.active.tab1 {
+    border-bottom-color: var(--tab1-tab-color);
+    color: var(--tab1-tab-color);
+}
+
+#sccs-email .categories .nav-link.active.tab2 {
+    border-bottom-color: var(--tab2-tab-color);
+    color: var(--tab2-tab-color);
+}
+
+#sccs-email .categories .nav-link.active.tab3 {
+    border-bottom-color: var(--tab3-tab-color);
+    color: var(--tab3-tab-color);
+}
+
+#sccs-email .categories .nav-link.active.default-tab {
+    border-bottom-color: var(--default-tab-color);
+    color: var(--default-tab-color);
+}
+
+#sccs-email .categories .nav-link .cat-icon {
+    margin-right: 10px;
+    color: inherit
+}
+
+#sccs-email .list-group {
+    height: calc(100vh - 180px);
+    overflow-y: scroll;
+}
+
+
+.tab-pane .list-group-item:first-child {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.tab-pane .list-group-item:last-child {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.tab-pane .list-group .checkbox {
+    display: inline-block;
+    margin: 0px;
+}
+
+.tab-pane .list-group input[type="checkbox"] {
+    margin-top: 2px;
+}
+
+
+
+
+#sccs-email hr {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: var(--button_low_light);
+}
+
+.nav-pills>li>a {
+    padding: 5px 10px;
+}
+
+.sccs-logo-email {
+    height: 56px;
+    padding-left: 42px;
+    margin-top: 6px;
+}
+
+.help-pop-button {
+    display: inline-block;
+    left: 0px;
+    width: 74px;
+}
+
+.sccs-email-body-div {
+    overflow-y: scroll;
+    height: calc(100vh - 240px);
+}

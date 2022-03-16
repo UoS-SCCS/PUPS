@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--
+/*******************************************************************************
+*                                                                              *
+* (C) Copyright 2021-2022 University of Surrey                                 *
+*                                                                              *
+* Redistribution and use in source and binary forms, with or without           *
+* modification, are permitted provided that the following conditions are met:  *
+*                                                                              *
+* 1. Redistributions of source code must retain the above copyright notice,    *
+* this list of conditions and the following disclaimer.                        *
+*                                                                              *
+* 2. Redistributions in binary form must reproduce the above copyright notice, *
+* this list of conditions and the following disclaimer in the documentation    *
+* and/or other materials provided with the distribution.                       *
+*                                                                              *
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  *
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   *
+* ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE    *
+* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR          *
+* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         *
+* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS     *
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      *
+* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)      *
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   *
+* POSSIBILITY OF SUCH DAMAGE.                                                  *
+*                                                                              *
+*******************************************************************************/
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="../../config/base_config.js"></script>
+    <script src="../../config/pageconfig_base.js"></script>
+    <script src="../storage/storage.js"></script>
+    <script src="../server/server.js"></script>
+    <script src="./email.js"></script>
+    <script src="./ui.js"></script>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/all.min.css" rel="stylesheet">
+    <link href="../../css/fonts.css" rel="stylesheet">
+    <link href="../../css/sccs.css" rel="stylesheet">
+    <link href="./email.css" rel="stylesheet">
+    <title>Training Email Account</title>
+</head>
+
+<body onload="renderEmail();prepPopover();addStorageListener();">
+
+    <div id="sccs-email">
+        <div class="container bootstrap snippets sccs">
+            <div class="row">
+                <div class="col-auto">
+                    <div id="popoverHelp" class="sticky-top fa-parent help-pop-button" data-bs-toggle="popover"
+                        data-bs-html="true" data-bs-content="" data-bs-title="Practice Using Passwords"
+                        data-bs-placement="bottom">
+                        <i class="fas fa-question-circle fa-hover-beat"
+                            style="color:var(--help_color);font-size:48pt"></i>
+                    </div>
+                </div>
+                <div class="col-auto v-logo">
+                    <img src="../../imgs/logo.png" title="SCCS Logo" alt="Surrey Centre for Cyber Security Logo" class="sccs-logo-email">
+                </div>
+                <div class="col-auto v-logo">
+                    <i class="fas fa-mail-bulk virtual-logo"></i>
+                </div>
+                <div class="col align-self-center">
+                    <span class="logo-text">Training Email Service</span>
+
+                </div>
+                <div class="col-auto align-self-center">
+                    <span class="account-name" id="accountName"></span>
+
+                </div>
+
+            </div>
+            <hr>
+            <div class="row sccs-last-row">
+                <div class="col-sm-3 col-md-2">
+                    <div class="row sccs-compose-row">
+                        <div class="col sccs-compose-col">
+                            <button type="button" onclick="compose();return false;"
+                                class="btn btn-light sccs-compose"><i class="fas fa-plus"></i><span
+                                    class="button-text">Compose</span></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <nav id="tagList" class="nav nav-pills flex-column sccs-tags-list">
+                                <!-- Placeholder to be dynamically filled -->
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="email-list" class="col-sm-9 col-md-10 sccs-tabbed-emails d-block">
+                    <div class="row sccs-control-row">
+                        <div class="col-auto">
+                            <button type="button" title="Select all emails" class="btn btn-outline-light rounded-circle"><i
+                                    class="far fa-square"></i></button>
+                            <button type="button" title="Refresh email screen" onclick="refreshCurrent();"
+                                class="btn btn-outline-light rounded-circle"><i class="fas fa-redo-alt"></i></button>
+                            <button type="button" title="Click for more options" class="btn btn-outline-light rounded-circle"><i
+                                    class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="row sccs-tab-row">
+                        <div class="tab-content" id="mailbox-content">
+                            <div class="tab-pane fade show active" id="inbox-pane" role="tabpanel"
+                                aria-labelledby="inboxNav">
+                                <!-- Nav tabs -->
+                                <ul id="inboxTabList" class="nav nav-tabs nav-justified categories" role="tablist">
+                                </ul>
+                                <!-- Tab panes -->
+                                <div id="inboxTabContainer" class="tab-content email-listing">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="email-viewer" class="col-sm-9 col-md-10 sccs-email-view d-none">
+                    <div class="row sccs-control-row">
+                        <div class="col-auto sccs-time-control">
+                            <button type="button" onclick="goback()" title="go back to the previous screen" class="btn btn-outline-light rounded-circle"><i
+                                    class="fas fa-arrow-left" ></i></button>
+                            <button type="button" class="btn btn-outline-light rounded-circle" title="Report email as spam"><i
+                                    class="fas fa-exclamation-circle"></i></button>
+                            <button type="button" class="btn btn-outline-light rounded-circle" title="Delete email"><i
+                                    class="fas fa-trash" ></i></button>
+                            <button type="button" class="btn btn-outline-light rounded-circle" title="Mark email as unread"><i
+                                    class="fas fa-envelope-open" ></i></button>
+                            <button type="button" class="btn btn-outline-light rounded-circle" title="Click for more options"><i
+                                    class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="row sccs-email-content-row">
+                        <div class="sccs-email-content">
+                            <div class="row subject-row">
+                                <div class="col-auto">
+                                    <i class="fas fa-square-full"></i>
+                                </div>
+                                <div class="col">
+                                    <span id="emailContentsSubject" class="sccs-email-subject"></span>
+                                </div>
+                            </div>
+                            <div class="row header-row">
+                                <div class="col-auto">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col"><span id="emailContentsTo" class="sccs-email-to"></span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><span id="emailContentsFrom" class="sccs-email-from"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-auto sccs-time-control">
+                                    <span id="emailContentsDate" class="sccs-received-time">07:95</span>
+                                    <button type="button" title="Star current email" class="btn btn-default rounded-circle"><i
+                                            class="far fa-star"></i></button>
+                                    <button type="button" title="Reply to current email" class="btn btn-default rounded-circle"><i
+                                            class="fas fa-reply"></i></button>
+                                    <button type="button" title="Click for more options" class="btn btn-default rounded-circle"><i
+                                            class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <div class="row sccs-email-body">
+                                <div class="col-auto">
+                                    <i class="fas fa-square-full"></i>
+                                </div>
+                                <div class="col">
+                                    <div id="emailContentsBody" class="sccs-email-body-div">
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row reply-buttons-row">
+                                <div class="col-auto">
+                                    <i class="fas fa-square-full"></i>
+                                </div>
+                                <div class="col">
+                                    <div class="sccs-email-body">
+                                        <button type="button" class="btn btn-outline-light btn-reply"><i
+                                                class="fas fa-reply"></i>Reply</button>
+                                        <button type="button" class="btn btn-outline-light btn-reply"><i
+                                                class="fas fa-reply-all"></i>Reply to all</button>
+                                        <button type="button" class="btn btn-outline-light btn-reply"><i
+                                                class="fas fa-share"></i>Forward</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="messageModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 id="modalHeading" class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div id="modalBody" class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="modalCloseButton" type="button" class="btn btn-danger"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="toast align-items-center text-white bg-secondary border-0 position-absolute top-0 start-50 translate-middle-x mt-1" data-bs-autohide="false" role="alert" aria-live="assertive"
+        aria-atomic="true" id="newEmailToast">
+        <div class="d-flex">
+            <div class="toast-body" id="toast-message">
+                
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+    <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+
+</body>
+
+</html>
