@@ -44,9 +44,33 @@
   border-style: solid;
   border-width: 0.1em;
   padding: 1em;
+  justify-content: center;
+  align-items: center;
 }
+
+.lesson-wrapper-flex {
+  width: 100%;
+  display: flex;
+  margin-bottom: 1em;
+  color: $link-color;
+  border-color: $border-color;
+  border-style: solid;
+  border-width: 0.1em;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+
+  
+
 .lesson-icon {
   color: $link-color;
+}
+.lesson-img {
+  color: $link-color;
+  max-width:50%;
+  min-width:50%;
 }
 .lesson-text {
   color: $link-color;
