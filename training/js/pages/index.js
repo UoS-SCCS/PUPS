@@ -180,7 +180,7 @@ function configureAccount(evt) {
  * site
  */
 function showTrainingLanding() {
-
+    window.name="SCCSPasswordTraining";
 
     const popContents = document.createElement("div");
     popContents.id = "popcontents";

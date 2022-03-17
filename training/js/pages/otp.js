@@ -60,7 +60,7 @@ function checkOTPEntry(elem) {
         }
         document.getElementById("verifyOTPBtn").focus();
 
-    } else if (elem.value.length === 6) {
+    } else if (idx <= 6) {
         if (idx < 6) {
             var nextElem = document.getElementById("sccs-otp-" + (idx + 1));
             nextElem.focus();

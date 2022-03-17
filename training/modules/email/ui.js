@@ -84,6 +84,7 @@ function showEmail(tag, index) {
  * training hub remove this part.
  */
 function prepPopover() {
+    window.name="SCCSEmailWindow";
     const popContents = document.createElement("div");
     popContents.id = "popcontents";
     popContents.className = "help-popover";
@@ -133,9 +134,18 @@ function prepPopover() {
  * @returns false
  */
 function openTraining() {
-    window.opener.focus();
+    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+        window.open("", "SCCSPasswordTraining");
+   }
+   
+    window.opener.focus()
     window.open("", "SCCSPasswordTraining");
+    if('GestureEvent' in window && !showniOSWarning){
+        alert("Safari on iOS currently blocks tab switching from within the page. Please manually switch tabs.");
+        showniOSWarning=true
+    }
     return false;
+
 }
 
 /**

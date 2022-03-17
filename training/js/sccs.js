@@ -41,6 +41,8 @@ function selectEmailAddress() {
  * Create the generic help popover shown on lesson pages
  */
 function prepHelpPopover() {
+    window.name="SCCSPasswordTraining";
+    
     const currentEmailAccount = window.localStorage.getItem("sccs_current");
     const popContents = document.createElement("div");
     popContents.id = "popcontents";
