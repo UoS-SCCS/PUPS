@@ -13,7 +13,7 @@ header:
     - label: "About"
       url: "#about"
     - label: "Background"
-      url: "#about"
+      url: "#background"
   
 excerpt: "Guidance and practical exercises on creating and using stronger passwords"
 about: 
@@ -36,6 +36,12 @@ about:
 
   - id: "about"
   - name: "about"
+background: 
+  - excerpt: | 
+            A short background summary of the project
+
+  - id: "background"
+  - name: "background"
 feature_row:
   - image_path: /assets/images/learning.jpg
     alt: "Image of the word learning written on a chalk board"
@@ -68,6 +74,9 @@ sidebar:
 
 
 {% include feature_row id="about" type="center" text="justify" %}
+
+<h2 id="background" class="text-center">Background</h2>
+{% include feature_row id="background" type="center" text="justify" %}
 
 {% include feature_row text="center" %}
 
