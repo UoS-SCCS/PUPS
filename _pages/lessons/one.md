@@ -6,8 +6,18 @@ sidebar:
 
 ---
 
-The following provide links to the resources for lesson 1.
+### Overview
 
+{% include yt-video.html yt-link="https://youtu.be/CTfgBUCrL4E" yt-embed="https://www.youtube-nocookie.com/embed/CTfgBUCrL4E" yt-thumbnail="/assets/images/vid_1_thumb.jpg" %}
+
+<p>This video gives an overview of the materials created for the Practice Using Passwords project. It describes the five lessons we developed that covers an introduction to passwords and interactive opportunities to practice using passwords.</p>
+
+{% include yt-video.html yt-link="https://youtu.be/oRhP_gijSAs" yt-embed="https://www.youtube-nocookie.com/embed/oRhP_gijSAs" yt-thumbnail="/assets/images/vid_2_thumb.jpg" %}
+<p>This is a beginner's introduction to what are passwords, why passwords are important, how to choose a strong password and the importance of choosing different passwords for different websites. It compares the concept of using a passwords with an everyday analogy that will be familiar to us all.</p>
+
+
+### Learning Resources
+The following provide links to the resources for lesson 1.
 <div class="lesson-container">
 <a class="lessonlink" href="{{ 'assets/downloads/Lesson1-SlidePack-includingActivity3Summary.pptx' | relative_url }}">
 <div class="lesson-wrapper-flex">
