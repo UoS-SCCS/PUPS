@@ -43,6 +43,22 @@ The following provide links to the resources for lesson 1.
 <br>
 
 <div class="lesson-container">
+<a class="lessonlink" href="{{ 'assets/downloads/Lesson1-HintsAndTips-Handout.docx' | relative_url }}">
+<div class="lesson-wrapper-flex">
+<div class="lesson-img">
+<img src="{{ 'assets/images/hints_and_tips.png' | relative_url }}" alt="Extract from lesson 1 slide deck"></div>
+<div class="lesson-text">
+<h2 class="lesson-title">Hints and Tips</h2>
+<div class="lesson-desc">A recap sheet that learners can use to remind them of the lesson</div>
+</div>
+</div>
+</a>
+</div>
+
+
+<br>
+
+<div class="lesson-container">
 <a class="lessonlink" href="{{ 'assets/downloads/Lesson1-FacilitatorGuide.docx' | relative_url }}">
 <div class="lesson-wrapper-flex">
 <div class="lesson-img">
