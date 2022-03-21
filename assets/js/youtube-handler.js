@@ -41,7 +41,7 @@ function updateYouTubeEmbeds() {
     var cookie = getCookie("cookie-consent");
     if (cookie === "true") {
         videos = document.getElementsByClassName("youtube-placeholder");
-        for(var i = 0; i < videos.length; i++){
+        for(var i = videos.length-1; i >= 0; i--){
             var video = videos.item(i);
             var url = video.dataset.youtubeLink;
             if(url !== null && url !==""){
