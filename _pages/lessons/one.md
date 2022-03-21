@@ -22,7 +22,7 @@ The following provide links to the resources for lesson 1.
 
 <br>
 {% include yt-video.html yt-link="https://youtu.be/oRhP_gijSAs" yt-embed="https://www.youtube-nocookie.com/embed/oRhP_gijSAs" yt-thumbnail="/assets/images/vid_2_thumb.jpg" %}
-<p>This is a beginner's introduction to what are passwords, why passwords are important, how to choose a strong password and the importance of choosing different passwords for different websites. It compares the concept of using a passwords with an everyday analogy that will be familiar to us all.</p>
+<p style="margin-top:12px"><b>Activity 1</b> - This is a beginner's introduction to what are passwords, why passwords are important, how to choose a strong password and the importance of choosing different passwords for different websites. It compares the concept of using a password with an everyday analogy that will be familiar to us all.</p>
 
 <br>
 
