@@ -33,7 +33,7 @@ The following provide links to the resources for lesson 1.
 <img src="{{ 'assets/images/Lesson1-SlidePack.png' | relative_url }}" alt="Extract from lesson 1 slide deck"></div>
 <div class="lesson-text">
 <h2 class="lesson-title">Lesson 1 Slide Deck</h2>
-<div class="lesson-desc">A slide deck for running lesson 1 with references to the video and activities below</div>
+<div class="lesson-desc">A slide deck for running the whole of Lesson 1 with references to Activity 1 and Activity 2. It includes Activity 3 which is a summary with reminders of hints and tips for choosing strong passwords. </div>
 </div>
 </div>
 </a>
