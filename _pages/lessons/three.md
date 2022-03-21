@@ -7,9 +7,9 @@ sidebar:
 
 Lesson 3 gives you a chance to practice signing in with your temporary training email address and the password you created in lesson 2.
 
-The following is a demonstration of the lesson
+The following is a demonstration of the lesson:
 
-{% include yt-video.html yt-link="https://youtu.be/LZLQXSxvaxM" yt-embed="https://www.youtube-nocookie.com/embed/LZLQXSxvaxM" yt-thumbnail="/assets/images/slide3.png" %}
+{% include yt-video.html yt-link="https://youtu.be/k7QlVGaxf0A" yt-embed="https://www.youtube-nocookie.com/embed/k7QlVGaxf0A" yt-thumbnail="/assets/images/slide3.png" %}
 <br>
 <div class="lesson-container">
 <a class="lessonlink" href="{{ 'assets/downloads/Lesson2345-LearnerGuide.docx' | relative_url }}">

@@ -7,9 +7,9 @@ sidebar:
 
 Lesson Two will take you through registering for a website and give you a chance to practice creating a three random word password.
 
-The following is a demonstration of the lesson
+The following is a demonstration of the lesson:
 
-{% include yt-video.html yt-link="https://www.youtube.com/watch?v=7_V1N3R8Wp0" yt-embed="https://www.youtube-nocookie.com/embed/7_V1N3R8Wp0" yt-thumbnail="/assets/images/slide2.png" %}
+{% include yt-video.html yt-link="https://www.youtube.com/watch?v=PPe2wnnqL-g" yt-embed="https://www.youtube-nocookie.com/embed/PPe2wnnqL-g" yt-thumbnail="/assets/images/slide2.png" %}
 <br>
 <div class="lesson-container">
 <a class="lessonlink" href="{{ 'assets/downloads/Lesson2345-LearnerGuide.docx' | relative_url }}">

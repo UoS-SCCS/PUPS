@@ -7,9 +7,9 @@ sidebar:
 
 Lesson five provides another example of a more advanced sign in process. In this case a CAPTCHA is presented to test that it is a human that is trying to sign in. CAPTCHAs are a common tool used by websites to defend against automated robots trying to break into people’s accounts.
 
-The following is a demonstration of the lesson
+The following is a demonstration of the lesson:
 
-{% include yt-video.html yt-link="https://youtu.be/xdRryM723Ms" yt-embed="https://www.youtube-nocookie.com/embed/xdRryM723Ms" yt-thumbnail="/assets/images/slide5.png" %}
+{% include yt-video.html yt-link="https://youtu.be/FJA49wS4TPs" yt-embed="https://www.youtube-nocookie.com/embed/FJA49wS4TPs" yt-thumbnail="/assets/images/slide5.png" %}
 <br>
 <div class="lesson-container">
 <a class="lessonlink" href="{{ 'assets/downloads/Lesson2345-LearnerGuide.docx' | relative_url }}">
