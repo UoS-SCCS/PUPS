@@ -15,7 +15,7 @@ This link enables a learner to download the handouts (exercise sheet and hints a
 <a href="#" class="btn btn--primary"><i class="fas fa-download"></i>&nbsp;Download Learning Materials</a>
 
 ## Facilitator
-The facilitator pack contains all the slides, handouts and guides for lessons 1-5. It does not include the videos and training site. 
+The facilitator pack contains all the slides, handouts and guides for lessons 1-5. It does not include the demonstration videos and training site. 
 
 <a href="#" class="btn btn--primary"><i class="fas fa-download"></i>&nbsp;Download Facilitator Pack</a>
 
