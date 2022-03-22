@@ -13,9 +13,7 @@
     {% include head.html %}
     {% include head/custom.html %}
   </head>
-  <div class="notice--danger" style="margin: 0 !important;" >
-    <b>This site is currently under development and is not complete. Please check back in a few weeks once the site is finished.</b>
-  </div>
+ 
   
   <body onload="checkConsent()" class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
     {% include_cached skip-links.html %}
