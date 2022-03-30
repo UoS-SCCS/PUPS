@@ -10,6 +10,12 @@ Lesson 3 gives you a chance to practice signing in with your temporary training 
 The following is a demonstration of the lesson:
 
 {% include yt-video.html yt-link="https://youtu.be/k7QlVGaxf0A" yt-embed="https://www.youtube-nocookie.com/embed/k7QlVGaxf0A" yt-thumbnail="/assets/images/slide3.png" %}
+
+<br>
+On the training site if you need a reminder of what your user account name you are using then press the purple help button on the top left. This help button also will help you navigate between tabs on the training site (windows in the browser you are using).
+
+<div style="text-align:center"><i class="fas fa-question-circle fa-hover-beat" style="color:rgb(232,50,131);font-size:48pt;"></i></div>
+
 <br>
 <div class="lesson-container">
 <a class="lessonlink" href="{{ 'assets/downloads/Lesson2345-LearnerGuide.docx' | relative_url }}">
